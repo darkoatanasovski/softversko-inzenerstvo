@@ -57,19 +57,19 @@ public:
 	}
 	void insert_word(string mkd_word, string word)
 	{
-		vector<string> tmp;
+		vector<string> tmp; 
 		tmp.push_back(word);
-		if(serach_word(mkd_word) == -1)
+		if(serach_word(mkd_word) == -1) //ako funkcijata search vrati -1, znaci deka ne go nasla zborot(vo slucajov key za mapata, i dodavame nov element vo mapata key->string i value->vector(zatoa sto eden zbor moze da ima povekje prevodi))
 		{
-			items.insert(make_pair(mkd_word,tmp));
-		}else{
-			map<string,vector<string>>::iterator pos;
+			items.insert(make_pair(mkd_word,tmp)); //standardno dodavanje element vo mapa
+		}else{ //zborot koj go prakame kako prv parametar vo ovaa funkcija, e pronajden i ne dodavame nov, tuku iteratorot treba da pokazuva kon toj key, vo slucajov MKD word
+			map<string,vector<string>>::iterator pos; //iterator za da ja izmineme mapata
 			for(pos = items.begin(); pos!=items.end(); ++pos)
 			{
-				if(pos->first == mkd_word)
+				if(pos->first == mkd_word) //koga iteratorot kje pokazuva na zborot za koj sakame da vneseme prevod
 				{
-					pos->second.push_back(word);
-					break;
+					pos->second.push_back(word); //pos->first e key za mapata, a pos->second e value, vo slucajov vector<string>, vo vektor se dodava element so push_back, taka sto pos->second.push_back(word) dodavame nov prevod za postoeckiot zbor na MKD
+					break; // izleguvame od ciklusot, zatoa sto vekje e zavrsena rabotata
 				}
 			}
 		}
